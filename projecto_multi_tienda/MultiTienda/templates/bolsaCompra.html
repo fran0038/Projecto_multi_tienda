@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>bolsa</h1>
+    <div class="container">
+        <div class="row"/>
+        Cantidad en la bolsa {{ bolsa_compra }}
+
+        {% if bolsa %}
+            {% for b in bolsa %}
+                {{b}}
+            {% endfor%}
+        {% endif %}
+        </div>
+        <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for p in productos %}
+              <tr>
+                <td>{{p.id}}</td>
+                <td>{{p.nombre}}</td>
+                <td>{{p.stock}}</td>
+                <td>{{p.precio}}</td>
+                <td>
+                  <a href="/bolsa/{{p.id}}">Agregar a la Bolsa</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+    </div>
+</body>
+</html>
