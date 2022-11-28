@@ -16,15 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app import views
+from app import formularios
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', views.inicio, name='home'),
-    path('bolsa/<int:id>', views.bolsaCompra),
+    path('bolsa/<int:id>', views.bolsaCompra, name='bolsa'),
     path('ropa/', views.Ropa, name='ropa'),
     path('electronica/', views.Electronica, name='electro'),
     path('jugueteria/', views.Jugueteria, name='juguetes'),
-    path('bolsa/' , views.Bolsa)
+    path('login/' , views.Login, name='login'),
+    path('formulario/',views.userRegistrationView,name="formulario"),
+    path('menu/', views.Menu)
+
 
     
 ]

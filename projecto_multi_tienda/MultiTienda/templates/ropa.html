@@ -17,15 +17,17 @@
     <nav class="web">
       <!-- ingresamos el logo -->
       <img class='logo' src="{% static 'imagenes/logo2.png'%}">
-      
+      <div>
+        <h4>Ropa</h4>
+      </div>
       <div> 
         <!-- menu desplegable -->
         <ul class="contenedor">
           <li class="cat"><a href="">Categoria</a>
             <ul class="lista" >
-              <li class="lin" ><a href="">Jugueteria</a></li>
-              <li class="lin" ><a href="">Electronica</a></li>
-              <li class="lin" ><a href="">Ropa</a></li>
+              <li class="lin" ><a href="{% url 'juguetes' %}">Jugueteria</a></li>
+              <li class="lin" ><a href="{% url 'electro' %}">Electronica</a></li>
+              <li class="lin" ><a href="{% url 'ropa' %}">Ropa</a></li>
             </ul>
           </li>
           <li class="bolsita">
@@ -34,7 +36,7 @@
             </a>
             
           </li>
-          <li class="cat"><a href="login.html">Iniciar sesion</a></li>
+          <li class="cat"><a href="{% url 'login' %}">Iniciar sesion</a></li>
 
         </ul>
       </div>

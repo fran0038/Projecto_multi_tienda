@@ -1,11 +1,15 @@
 from django.db import models
+from django import forms
 
 # Create your models here.
 
 class Usuario(models.Model):
     nombre = models.CharField(max_length=30)
-    correo = models.CharField(max_length=30)
-    telefono = models.IntegerField()
+    apellido = models.CharField(max_length = 30 ,default='')
+    telefono = models.CharField(max_length=12)
+    email = models.EmailField()
+    password = models.CharField(max_length=15,default='')
+    
 
 
 
@@ -31,3 +35,5 @@ class Productos(models.Model):
     precio = models.IntegerField()
     stock = models.IntegerField()
 
+
+    
