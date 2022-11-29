@@ -11,29 +11,17 @@ class Usuario(models.Model):
     password = models.CharField(max_length=15,default='')
     
 
-
-
-
-class Ropa(models.Model):
-    nombre = models.CharField(max_length=30)
-    codigo = models.IntegerField()
-    precio = models.IntegerField()
-    talla = models.IntegerField()
-    detalle = models.CharField(max_length=30)
-
-
-class Electronica(models.Model):
-    nombre = models.CharField(max_length=30)
-    codigo = models.IntegerField()
-    precio = models.IntegerField()
-    detalle = models.CharField(max_length=30)
-    tipo_producto = models.CharField(max_length=30)
-    
-
 class Productos(models.Model):
+    imagenes = models.ImageField(upload_to="imagenes")
     nombre= models.CharField(max_length=30)
     precio = models.IntegerField()
-    stock = models.IntegerField()
+    categoria= models.CharField(max_length=30)
+    detalle = models.CharField(max_length=100)
+
+
+    def __str__(self):
+        return f'{self.nombre} -> {self.precio}'
+    
 
 
     

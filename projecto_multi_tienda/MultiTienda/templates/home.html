@@ -19,15 +19,14 @@
       <div class="contenedor"> 
         <!-- menu desplegable -->
         <ul class="menu">
-          <li class="cat"><a href="">Categoria</a>
+          <li class="cat"><a href="">Productos</a>
             <ul class="lista" >
-              <li class="lin" ><a href="{% url 'juguetes' %}">Jugueteria</a></li>
-              <li class="lin" ><a href="{% url 'electro' %}">Electronica</a></li>
+            
               <li class="lin" ><a href="{% url 'ropa' %}">Ropa</a></li>
             </ul>
           </li>
           <li class="bolsita">
-            <a href="bolsaCompra.html">
+            <a href="{% url 'Bolsa' %}">
               <img class="bolsa" src="{% static 'imagenes/bolsa.png' %}">
             </a>
             

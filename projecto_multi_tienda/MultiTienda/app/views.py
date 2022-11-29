@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from app import models
+from app.models import Productos
+from app.bolsaCompra import Bolsa
 from django.contrib import messages
 from app import formularios
 from django.db.models import Q
@@ -8,17 +10,44 @@ from django.db.models import Q
 # Create your views here.
 
 def inicio(request):
-     #cant = request.session.get("bolsa_compra", 0)
-     #bolsa = request.session.get("bolsa", [])
-
-     #productos = Productos.objects.all()
 
      return render(request,'home.html')
 
-def bolsaCompra(request, id):
-    cantidad = request.session.get("bolsa_compra", 0)
-    request.session["bolsa_compra"]= [{id: id , "csntidad": 1}]
-    return inicio(request, 'bolsaCompra.html')
+def productos(request):
+    productos = Productos.objects.all()
+
+    return  render(request, 'ropa.html', {'productos': productos})
+
+
+def bolsaCompra(request):
+        productos = Productos.objects.all()
+
+
+        return render(request, 'bolsaCompra.html', {'productos': productos})
+
+def agregar_bolsa(request, producto_id):
+    bolsita = Bolsa(request)
+    producto = Producto.object.get(id=producto_id)
+    bolsita.agregarCompra(producto)
+    return redirect("bolsa")  
+
+def eliminar_producto(request, producto_id):
+    bolsita = Bolsa(request)
+    producto = Productos.objects.get(id=producto_id)
+    bolsita.eliminarCompra(producto)
+    return redirect("bolsa")
+
+def restar_compra(request, producto_id):
+    bolsita = Bolsa(request)
+    producto = Productos.objects.get(id=producto_id)
+    bolsita.resta(producto)
+    return redirect("bolsa")
+
+def limpiar_bolsa(request):
+    bolsita = Bolsa(request)
+    bolsita.limpiarBolsa()
+    return redirect("bolsa")
+
 
 
 def userRegistrationView(request):
@@ -75,20 +104,5 @@ def Login(request):
     
     return render(request, 'login.html', context)
 
-
-def Electronica(request):
-    return render(request, 'electronica.html')
-
-
-def Ropa(request):
-    return render(request, 'ropa.html')
-
-
-def Jugueteria(request):
-    return render(request, 'jugueteria.html')
-
-
-def Menu(request):
-    return render(request, 'menu.html')
 
 

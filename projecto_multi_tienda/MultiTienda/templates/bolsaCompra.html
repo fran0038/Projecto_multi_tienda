@@ -1,47 +1,61 @@
 <!DOCTYPE html>
+{% load static %}
+{% include 'estilo.html' %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bolsa compras</title>
 </head>
 <body>
-    <h1>bolsa</h1>
-    <div class="container">
-        <div class="row"/>
-        Cantidad en la bolsa {{ bolsa_compra }}
+  <div class="alert alert-primary" role="alert">
 
-        {% if bolsa %}
-            {% for b in bolsa %}
-                {{b}}
-            {% endfor%}
-        {% endif %}
-        </div>
-        <table class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Stock</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for p in productos %}
-              <tr>
-                <td>{{p.id}}</td>
-                <td>{{p.nombre}}</td>
-                <td>{{p.stock}}</td>
-                <td>{{p.precio}}</td>
-                <td>
-                  <a href="/bolsa/{{p.id}}">Agregar a la Bolsa</a>
-                </td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-    </div>
+    
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="row" colspan="3" class="text-center">Bolsa de compra</th>
+          </tr>
+          <tr class="bg-info">
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          {% if request.session.bolsita.items %}
+          {% for key,value in request.session.bolsita.items %}
+          <tr>
+            <td>{{value.nombre}}</td>
+            <td>{{value.precio}}</td>
+            <td>{{value.cantidad}}
+                <a href="{% url 'add' value.producto_id %}" class="badge btn btn-dark badge-dark">--</a>
+                <a href="{% url 'menos' value.producto_id %}" class="badge btn btn-dark badge-dark">--</a>
+            </td>
+          </tr>
+          {% endfor %}
+          {% else %}
+          <tr>
+            <td>
+              <div class="alert alert-danger text-center">Sin productos</div>
+            </td>
+          </tr>
+          {% endif %}
+          <tr>
+            <th scope="row">Total</th>
+            <th colspan="2">$ {{total_bolsa}}</th>
+          </tr>
+        </tbody>
+
+      </table>
+      <br>
+      <div class="col-6"><a href="{% url 'limpiar' %}}" class="btn btn-danger">Limpiar</a></div>
+      <div class="col-6"><a href="#" class="btn btn-success">Guardar</a></div>
+  </div>
+
+
+
 </body>
 </html>
