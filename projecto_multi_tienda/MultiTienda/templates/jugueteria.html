@@ -27,9 +27,13 @@
             <a href="{% url 'home' %}">Home</a>
           </li>
           <li class="cat"><a href="">Categoria</a>
-            <ul class="lista">
-              <li class="lin" ><a href="{% url 'ropa' %}">Ropa</a></li>
-            </ul>
+            <ul class="lista" >
+            
+              <li class="lin" ><a href="{% url 'ropa' %}">Prendas</a></li>
+              <li class="lin" ><a href="{% url 'electronica' %}">Electronica</a></li>
+              <li class="lin" ><a href="{% url 'jugueteria' %}">jugueteria</a></li>
+           
+          </ul>
           </li>
           <li class="bolsita">
             <a href="bolsaCompra.html">
@@ -46,15 +50,24 @@
       
     <div class="container">
       <div class="row">
-
-        <div class="col s12">
-          <h1 class="center-align"> Aprovecha nuestras ofertas !!</h1>    
-        </div>
+        {% for producto in productos %}
+        <div class="col-6">
+          <div class="card" style="height: 400px; width:300px; margin:50px; background-color: #DEB8FF;">
+            <div class="card-body center">
               
-     </div>
-    
+              <p class="card-text">{{producto.nombre}}</p>
+              <img class="thumbnail" src="{{producto.imagenes}}" style="width:100px;"> 
+              <p class="card-text">{{producto.categorias.nombre}}</p>
+              <p class="card-text" style="margin-top: 2rem;padding: 3px;" id="detalle">{{producto.detalle}}</p>
+              <p class="card-text" style="margin-top: 20px;">${{producto.precio}}</p>
+              <a href="{% url 'add' producto.id %}" class="btn byn-primary " style="margin-top: 50px;">Agregar a la bolsa</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        
+      </div>
     </div>
-
    
 </body>
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% include 'estilo.html'%}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -24,12 +25,12 @@
         
         <li class="cat"><a href="">Categoria</a>
           <ul class="lista" >
-            {% for cat in categorias%}
-              <li class="lin" ><a href="{% url 'ropa' %}">Ropa</a></li>
-              <li class="lin" ><a href="{% url 'ropa' %}">Electronica</a></li>
-              <li class="lin" ><a href="{% url 'ropa' %}">Jugueteria</a></li>
-            {% endfor%}
-          </ul>
+            
+            <li class="lin" ><a href="{% url 'ropa' %}">Prendas</a></li>
+            <li class="lin" ><a href="{% url 'electronica' %}">Electronica</a></li>
+            <li class="lin" ><a href="{% url 'jugueteria' %}">jugueteria</a></li>
+         
+        </ul>
         </li>
         <li class="bolsita">
           <a href="{% url 'Bolsa'%}">
@@ -43,25 +44,41 @@
     </div>
 
   </nav>
-      
-    <div class="container">
-      <div class="row">
-        <div class="col s12">
-          <h1 class="center-align"> Aprovecha nuestras ofertas !!</h1>
-          
-            
-        </div>
-          
-          
-            
-          </div>
-          
-        </div>
-      </div>
-      
-      
-      
+
+    <div class="slide hi-slide">
+      <div class="hi-prev"></div>
+      <div class="hi-nex"></div>
+      <ul>
+        <li>
+          <img src="static/tienda.png" alt="">
+        </li>
+        <li>
+          <img src="static/oferta.png" alt="">
+        </li>
+        <li>
+          <img src="static/nuevas.png" alt="">
+        </li>
+        <li>
+          <img src="static/navidad.png" alt="">
+        </li>
+        <li>
+          <img src="static/amistad.png" alt="">
+        </li>
+      </ul>
     </div>
+  
+    <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+  
+    <script src="js/jquery.hislide.js"></script>
+    <script>
+      $('.slide').hislide();
+    </script>
+  </body>
+  </html>
+  
+    
+      
+    
 
    
 </body>

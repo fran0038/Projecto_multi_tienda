@@ -17,22 +17,27 @@ from django.contrib import admin
 from django.urls import path
 from app import views
 from app import formularios
-from app.views import bolsaCompra, agregar_bolsa, eliminar_producto, restar_compra, limpiar_bolsa
+from app.views import bolsaCompra, agregar_bolsa, eliminar_producto, restar_compra, limpiar_bolsa, agregar_electronica
 
 urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('home/', views.inicio, name='home'),
     path('bolsa/', views.bolsaCompra, name='Bolsa'),
-    path('ropa/', views.productos, name='ropa'),
+    path('ropa/', views.mostrarRopa, name='ropa'),
     path('login/' , views.Login, name='login'),
     path('formulario/',views.userRegistrationView,name="formulario"),
     path('agregar/<int:producto_id>', agregar_bolsa, name="add"),
+    path('agregarElectro/<int:producto_id>', agregar_electronica, name="add1"),
     path('eliminar/<int:producto_id>', eliminar_producto, name="delete"),
     path('restar/<int:producto_id>', restar_compra, name="menos"),
     path('limpiar/', limpiar_bolsa, name="limpiar"),
     path('crear/',views.productos, name="productos"),
     path('categoria/' ,views.categoria, name="categoria"),
+    path('electronica/',views.mostrarElectronica, name="electronica"),
+    path('crearEle/',views.electronica, name="crearElectronica"),
+    path('jugueteria/',views.mostrarJugueteria, name="jugueteria"),
+    path('crearJu/',views.jugueteria, name="crearJuguetes"),
 
     
 ]

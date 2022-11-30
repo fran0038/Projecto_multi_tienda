@@ -28,10 +28,12 @@
           </li>
           <li class="cat"><a href="">Categoria</a>
             <ul class="lista" >
-              {% for cat in categorias%}
-                <li class="lin" ><a href="{% url 'ropa' %}">{{cat.nombre}}</a></li>
-              {% endfor%}
-            </ul>
+            
+              <li class="lin" ><a href="{% url 'ropa' %}">Prendas</a></li>
+              <li class="lin" ><a href="{% url 'electronica' %}">Electronica</a></li>
+              <li class="lin" ><a href="{% url 'jugueteria' %}">jugueteria</a></li>
+           
+          </ul>
           </li>
           <li class="bolsita">
             <a href="{% url 'Bolsa'%}">
@@ -66,10 +68,6 @@
       </div>
     </div>
     
-
-      
-
-    </div>
    
 </body>
 </html>
