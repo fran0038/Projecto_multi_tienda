@@ -55,8 +55,11 @@ nav{
     display: block;
 }
 
+
 .lista {
-    
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
     color: black;
     background-color:#4f9fff;
     padding: 5px 5px;

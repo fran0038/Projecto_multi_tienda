@@ -31,6 +31,8 @@ urlpatterns = [
     path('eliminar/<int:producto_id>', eliminar_producto, name="delete"),
     path('restar/<int:producto_id>', restar_compra, name="menos"),
     path('limpiar/', limpiar_bolsa, name="limpiar"),
+    path('crear/',views.productos, name="productos"),
+    path('categoria/' ,views.categoria, name="categoria"),
 
     
 ]

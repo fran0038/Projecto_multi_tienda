@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categoria</title>
+</head>
+<body>
+    <h1 class="d-flex justify-content-center">Crear Categoria</h1>
+    <form method="POST" class="">
+        {% csrf_token %}
+        <label class="form-label">Categoria</label>
+        <div class="d-flex justify-content-center">
+            <input type="text" name="tipoCategoria" class="form-control">
+            <button type="submit" class="btn btn-success">Guardar</button>
+        </div>
+    </form>
+    <br>
+   
+</body>
+</html>

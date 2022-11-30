@@ -19,27 +19,33 @@
   <nav class="web">
     <!-- ingresamos el logo -->
     <img class='logo' src="{% static 'imagenes/logo2.png'%}">
-    
-    <div class="contenedor"> 
+    <div>
+      <h4>Login</h4>
+    </div>
+    <div> 
       <!-- menu desplegable -->
-      <ul class="menu">
+      <ul class="contenedor">
+        <li class="cat">
+          <a href="{% url 'home' %}">Home</a>
+        </li>
         <li class="cat"><a href="">Categoria</a>
           <ul class="lista" >
-           
-            <li class="lin" ><a href="{% url 'ropa' %}">Ropa</a></li>
+            {% for cat in categorias%}
+              <li class="lin" ><a href="{% url 'ropa' %}">{{cat.nombre}}</a></li>
+            {% endfor%}
           </ul>
         </li>
         <li class="bolsita">
-          <a href="bolsaCompra.html">
+          <a href="{% url 'Bolsa'%}">
             <img class="bolsa" src="{% static 'imagenes/bolsa.png' %}">
           </a>
           
         </li>
-        <li class="cat"><a href="{% url 'login' %}">Bienvenido{{for}}</a></li>
+        <li class="cat"><a href="{% url 'login' %}">Iniciar sesion</a></li>
 
       </ul>
     </div>
-    
+
   </nav>
    
         <div class="container">

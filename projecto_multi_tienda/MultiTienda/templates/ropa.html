@@ -23,14 +23,18 @@
       <div> 
         <!-- menu desplegable -->
         <ul class="contenedor">
+          <li class="cat">
+            <a href="{% url 'home' %}">Home</a>
+          </li>
           <li class="cat"><a href="">Categoria</a>
             <ul class="lista" >
-          
-              <li class="lin" ><a href="{% url 'ropa' %}">Ropa</a></li>
+              {% for cat in categorias%}
+                <li class="lin" ><a href="{% url 'ropa' %}">{{cat.nombre}}</a></li>
+              {% endfor%}
             </ul>
           </li>
           <li class="bolsita">
-            <a href="bolsaCompra.html">
+            <a href="{% url 'Bolsa'%}">
               <img class="bolsa" src="{% static 'imagenes/bolsa.png' %}">
             </a>
             
@@ -39,33 +43,30 @@
 
         </ul>
       </div>
-      
+
     </nav>
-      
-    <div class="row">
+    <div class="container">
       <div class="row">
         {% for producto in productos %}
         <div class="col-6">
-          <div class="card" style="height: 10rem; width:30rem; margin:5px 0px;">
-            <div class="card-body">
+          <div class="card" style="height: 400px; width:300px; margin:50px; background-color: #DEB8FF;">
+            <div class="card-body center">
               
               <p class="card-text">{{producto.nombre}}</p>
-              <img class="thumbnail" src="{{producto.imagenes}}" style="width: 20px;">
-              <p class="card-text">{{producto.categoria}}</p>
-              <p class="card-text">{{producto.detalle}}</p>
-              <p class="card-text">{{producto.precio}}</p>
-              <a href="{% url 'add' producto.id %}" class="btn byn-primary">Agregar a la bolsa</a>
+              <img class="thumbnail" src="{{producto.imagenes}}" style="width:100px;"> 
+              <p class="card-text">{{producto.categorias.nombre}}</p>
+              <p class="card-text" style="margin-top: 2rem;padding: 3px;" id="detalle">{{producto.detalle}}</p>
+              <p class="card-text" style="margin-top: 20px;">${{producto.precio}}</p>
+              <a href="{% url 'add' producto.id %}" class="btn byn-primary " style="margin-top: 50px;">Agregar a la bolsa</a>
             </div>
           </div>
         </div>
-  
         {% endfor %}
-
+        
       </div>
     </div>
-    <br>
-    <br>
-    <div class="col-4">
+    
+
       
 
     </div>

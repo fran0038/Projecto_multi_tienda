@@ -6,18 +6,50 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <title>Bolsa compras</title>
 </head>
 <body>
-  <div class="alert alert-primary" role="alert">
+  <nav class="web">
+    <!-- ingresamos el logo -->
+    <img class='logo' src="{% static 'imagenes/logo2.png'%}">
+    <div>
+      <h4>Bolsa de compras</h4>
+    </div>
+    <div> 
+      <!-- menu desplegable -->
+      <ul class="contenedor">
+        <li class="cat">
+          <a href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="cat"><a href="">Categoria</a>
+          <ul class="lista" >
+            {% for cat in categorias%}
+              <li class="lin" ><a href="{% url 'ropa' %}">{{cat.nombre}}</a></li>
+            {% endfor%}
+          </ul>
+        </li>
+        <li class="bolsita">
+          <a href="{% url 'Bolsa'%}">
+            <img class="bolsa" src="{% static 'imagenes/bolsa.png' %}">
+          </a>
+          
+        </li>
+        <li class="cat"><a href="{% url 'login' %}">Iniciar sesion</a></li>
 
-    
+      </ul>
+    </div>
+
+  </nav>
+  <br>
+  <div class="alert alert-primary " role="alert" style="height:auto; width:50em;margin-left:25rem;background-color:#F8CAF9;">
       <table class="table table-hover">
         <thead>
           <tr>
-            <th scope="row" colspan="3" class="text-center">Bolsa de compra</th>
+            <th scope="row" colspan="3" class="text-center" style="font-family:monospace; font-size: 30pt;" >Bolsa de compra</th>
           </tr>
-          <tr class="bg-info">
+          <tr class="bg-secundary center" style="background-color:#C1B6F3;">
             <th scope="col">Nombre</th>
             <th scope="col">Precio</th>
             <th scope="col">Cantidad</th>
@@ -31,29 +63,32 @@
             <td>{{value.nombre}}</td>
             <td>{{value.precio}}</td>
             <td>{{value.cantidad}}
-                <a href="{% url 'add' value.producto_id %}" class="badge btn btn-dark badge-dark">--</a>
-                <a href="{% url 'menos' value.producto_id %}" class="badge btn btn-dark badge-dark">--</a>
+                <a href="{% url 'add' value.producto_id %}" class="badge btn btn-dark badge-dark" style="background-color: red;">+</a>
+                <a href="{% url 'menos' value.producto_id %}" class="badge btn btn-dark badge-dark" style="background-color: blue;">-</a>
             </td>
           </tr>
           {% endfor %}
           {% else %}
           <tr>
             <td>
-              <div class="alert alert-danger text-center">Sin productos</div>
+              <div class="alert alert-danger text-center" style="background-color: #C0DFF9;">Sin productos</div>
             </td>
           </tr>
           {% endif %}
           <tr>
-            <th scope="row">Total</th>
-            <th colspan="2">$ {{total_bolsa}}</th>
+            <th scope="row">Total:</th>
+            <th colspan="2">${{total_bolsita}}</th>
           </tr>
         </tbody>
 
       </table>
       <br>
-      <div class="col-6"><a href="{% url 'limpiar' %}}" class="btn btn-danger">Limpiar</a></div>
-      <div class="col-6"><a href="#" class="btn btn-success">Guardar</a></div>
-  </div>
+      <div style="display: flex; margin-left: 10rem;">
+        <div class="col-6 " ><a href="{% url 'limpiar' %}}" class="btn btn-danger" style="background-color: #568BFA;">Limpiar</a></div>
+        <div class="col-6"><a href="#" class="btn btn-success" style="background-color: #568BFA;">Guardar</a></div>
+      </div>
+
+    </div>
 
 
 

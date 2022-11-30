@@ -1,10 +1,9 @@
 
 class Bolsa:
 
-
     def __init__(self, request):
         self.request = request
-        self.session = resquest.session
+        self.session = request.session
         bolsita = self.session.get("bolsita")
         if not bolsita:
             self.session["bolsita"] = {}
@@ -22,7 +21,7 @@ class Bolsa:
                 "cantidad": 1,
             }
         else:
-            self.bolsita[id]["bolsita"] += 1
+            self.bolsita[id]["cantidad"] += 1
             self.bolsita[id]["precio"] += producto.precio
         self.guardarCompra()
 
@@ -34,7 +33,7 @@ class Bolsa:
         id = str(producto.id)
         if id in self.bolsita:
             del self.bolsita[id]
-            self.agregarCompra()
+        self.guardarCompra()
 
     def resta(self, producto):
         id = str(producto.id)
@@ -43,7 +42,7 @@ class Bolsa:
             self.bolsita[id]["precio"] -= producto.precio
             if self.bolsita[id]["cantidad"] <= 0:
                 self.eliminarCompra(producto)
-                self.guardarCompra()
+            self.guardarCompra()
             
     def limpiarBolsa(self):
         self.session["bolsita"] = {}

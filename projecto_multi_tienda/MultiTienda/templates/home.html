@@ -12,31 +12,37 @@
     <title>Multi Tienda start</title>
 </head>
 <body>
-    <nav class="web">
-      <!-- ingresamos el logo -->
-      <img class='logo' src="{% static 'imagenes/logo2.png'%}">
-      
-      <div class="contenedor"> 
-        <!-- menu desplegable -->
-        <ul class="menu">
-          <li class="cat"><a href="">Productos</a>
-            <ul class="lista" >
-            
+  <nav class="web">
+    <!-- ingresamos el logo -->
+    <img class='logo' src="{% static 'imagenes/logo2.png'%}">
+    <div>
+      <h4 style="font-size: 20pt;">Bienvenidos a nuestra tienda "Star"</h4>
+    </div>
+    <div> 
+      <!-- menu desplegable -->
+      <ul class="contenedor">
+        
+        <li class="cat"><a href="">Categoria</a>
+          <ul class="lista" >
+            {% for cat in categorias%}
               <li class="lin" ><a href="{% url 'ropa' %}">Ropa</a></li>
-            </ul>
-          </li>
-          <li class="bolsita">
-            <a href="{% url 'Bolsa' %}">
-              <img class="bolsa" src="{% static 'imagenes/bolsa.png' %}">
-            </a>
-            
-          </li>
-          <li class="menu"><a href="{% url 'login' %}">Iniciar sesion</a></li>
+              <li class="lin" ><a href="{% url 'ropa' %}">Electronica</a></li>
+              <li class="lin" ><a href="{% url 'ropa' %}">Jugueteria</a></li>
+            {% endfor%}
+          </ul>
+        </li>
+        <li class="bolsita">
+          <a href="{% url 'Bolsa'%}">
+            <img class="bolsa" src="{% static 'imagenes/bolsa.png' %}">
+          </a>
+          
+        </li>
+        <li class="cat"><a href="{% url 'login' %}">Iniciar sesion</a></li>
 
-        </ul>
-      </div>
-      
-    </nav>
+      </ul>
+    </div>
+
+  </nav>
       
     <div class="container">
       <div class="row">

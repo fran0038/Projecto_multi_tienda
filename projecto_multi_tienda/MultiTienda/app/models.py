@@ -1,6 +1,7 @@
 from django.db import models
 from django import forms
 
+
 # Create your models here.
 
 class Usuario(models.Model):
@@ -10,18 +11,21 @@ class Usuario(models.Model):
     email = models.EmailField()
     password = models.CharField(max_length=15,default='')
     
+class Categorias(models.Model):
+    nombre = models.CharField(max_length=10)
+
 
 class Productos(models.Model):
-    imagenes = models.ImageField(upload_to="imagenes")
+    imagenes = models.URLField()
     nombre= models.CharField(max_length=30)
     precio = models.IntegerField()
-    categoria= models.CharField(max_length=30)
-    detalle = models.CharField(max_length=100)
+    categorias= models.ForeignKey(Categorias, on_delete=models.CASCADE,null=True, default='')
+    detalle = models.CharField(max_length=600)
 
 
     def __str__(self):
         return f'{self.nombre} -> {self.precio}'
-    
+
 
 
     

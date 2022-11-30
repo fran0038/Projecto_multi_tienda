@@ -14,48 +14,66 @@
     <title>Multi Tienda start</title>
 </head>
 <body>
-    <nav class="web">
-      <!-- ingresamos el logo -->
-      <img class='logo' src="{% static 'imagenes/logo2.png'%}">
-      <div>
-        <h4>Electronica</h4>
-      </div>
-      
-      <div> 
-        <!-- menu desplegable -->
-        <ul class="contenedor">
-          <li class="cat"><a href="">Categoria</a>
-            <ul class="lista" >
-              <li class="lin" ><a href="{% url 'juguetes' %}">Jugueteria</a></li>
-              <li class="lin" ><a href="{% url 'electro' %}">Electronica</a></li>
-              <li class="lin" ><a href="{% url 'ropa' %}">Ropa</a></li>
-            </ul>
-          </li>
-          <li class="bolsita">
-            <a href="bolsaCompra.html">
-              <img class="bolsa" src="{% static 'imagenes/bolsa.png' %}">
-            </a>
-            
-          </li>
-          <li class="cat"><a href="{% url 'login' %}">Iniciar sesion</a></li>
+  <nav class="web">
+    <!-- ingresamos el logo -->
+    <img class='logo' src="{% static 'imagenes/logo2.png'%}">
+    <div>
+      <h4>Electronica</h4>
+    </div>
+    <div> 
+      <!-- menu desplegable -->
+      <ul class="contenedor">
+        <li class="cat">
+          <a href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="cat"><a href="">Categoria</a>
+          <ul class="lista" >
+            {% for cat in categorias%}
+              <li class="lin" ><a href="{% url 'ropa' %}">{{cat.nombre}}</a></li>
+            {% endfor%}
+          </ul>
+        </li>
+        <li class="bolsita">
+          <a href="{% url 'Bolsa'%}">
+            <img class="bolsa" src="{% static 'imagenes/bolsa.png' %}">
+          </a>
+          
+        </li>
+        <li class="cat"><a href="{% url 'login' %}">Iniciar sesion</a></li>
 
-        </ul>
-      </div>
-      
-    </nav>
-      
+      </ul>
+    </div>
+
+  </nav>
+    
     <div class="container">
       <div class="row">
-
-        <div class="col s12">
-          <h1 class="center-align"> Aprovecha nuestras ofertas !!</h1>    
-        </div>
-
-        
+        {% for e in electronica %}
+        <div class="col-6">
+          <div class="card" style="height: 400px; width:300px; margin:50px; background-color: #DEB8FF;">
+            <div class="card-body center">
               
-     </div>
-    
+              <p class="card-text">{{e.nombre}}</p>
+              <img class="thumbnail" src="{{e.imagenes}}" style="width:100px;"> 
+              <p class="card-text">{{e.categorias}}</p>
+              <p class="card-text" style="margin-top: 2rem;padding: 3px;" id="detalle">{{e.detalle}}</p>
+              <p class="card-text" style="margin-top: 20px;">${{e.precio}}</p>
+              <a href="{% url 'add' electronica.id %}" class="btn byn-primary " style="margin-top: 50px;">Agregar a la bolsa</a>
+            </div>
+          </div>
+        </div>
+  
+        {% endfor %}
+
+      </div>
     </div>
+    
+
+      
+
+    </div>
+      
+    
 
    
 </body>

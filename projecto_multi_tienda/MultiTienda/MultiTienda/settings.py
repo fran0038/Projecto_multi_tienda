@@ -83,9 +83,9 @@ pymysql.install_as_MySQLdb()
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'multi_tienda',
-        'ROOT': 'root',
+        'USER': 'root',
         'PASS':''
     }
 }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            <label>Nombre</label>
+            <input type="text" name="nombreProducto">
+
+        </div>
+        <div>
+            <label type="text">detalle</label>
+            <input type="text" name="detalle">
+        </div>
+        <div>
+            <label typ="text">Precio</label>
+            <input type="text" name="precio">
+        </div>
+        <div>
+            <label type="text">Cargar imagen</label>
+            <input type="text" name="imagenes">
+
+        </div>
+        <label type="text">Categoria</label>
+        <select name="categoria" id="">
+            {% for c in pro %}
+            <option value="">{{c.nombre}}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-success">Guardar</button>
+    
+
+    </form>
+</body>
+</html>
